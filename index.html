@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,306 +25,309 @@
     <div class="max-w-7xl mx-auto p-6">
         <h1 class="text-3xl font-bold mb-2">BCCoE Steptember 2025 Insights</h1>
         <p class="text-gray-600 mb-6">September Challenge - All 12 Charts</p>
+
+```
+    <div class="mb-6">
+        <h3 class="text-sm font-semibold text-gray-700 mb-2">📊 2025 Only (8 charts)</h3>
+        <div class="flex gap-2 mb-4 flex-wrap" id="buttons2025"></div>
         
-        <div class="mb-6">
-            <h3 class="text-sm font-semibold text-gray-700 mb-2">📊 2025 Only (8 charts)</h3>
-            <div class="flex gap-2 mb-4 flex-wrap" id="buttons2025"></div>
-            
-            <h3 class="text-sm font-semibold text-gray-700 mb-2">📈 3-Year Analysis (4 charts)</h3>
-            <div class="flex gap-2 flex-wrap" id="buttons3year"></div>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-2xl font-bold mb-2" id="title">The Race</h2>
-            <p class="text-sm text-gray-600 italic mb-4" id="explain"></p>
-            <div id="chartContainer">
-                <canvas id="chart"></canvas>
-            </div>
-            <div id="extra"></div>
-        </div>
-        
-        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p class="text-sm text-blue-800">
-                <strong>🏆 Team Nat Champions!</strong> Final: Nat 2,418,299 • Hoberg 2,286,987 • Kev 1,739,607 • Margin: +131,312
-            </p>
-        </div>
+        <h3 class="text-sm font-semibold text-gray-700 mb-2">📈 3-Year Analysis (4 charts)</h3>
+        <div class="flex gap-2 flex-wrap" id="buttons3year"></div>
     </div>
+    
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-2" id="title">The Race</h2>
+        <p class="text-sm text-gray-600 italic mb-4" id="explain"></p>
+        <div id="chartContainer">
+            <canvas id="chart"></canvas>
+        </div>
+        <div id="extra"></div>
+    </div>
+    
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <p class="text-sm text-blue-800">
+            <strong>🏆 Team Nat Champions!</strong> Final: Nat 2,418,299 • Hoberg 2,286,987 • Kev 1,739,607 • Margin: +131,312
+        </p>
+    </div>
+</div>
 
-    <script>
-        const tc = { Nat: '#3b82f6', Kev: '#ef4444', Hoberg: '#10b981' };
-        let currentChart = null;
+<script>
+    const tc = { Nat: '#3b82f6', Kev: '#ef4444', Hoberg: '#10b981' };
+    let currentChart = null;
 
-        const chartData = {
-            race: {
-                name: 'The Race',
-                explain: 'Daily cumulative progress showing Team Nat steadily building their winning margin throughout September.',
-                type: 'line',
-                group: '2025',
-                chartData: {
-                    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
-                    datasets: [
-                        {label:'Nat',data:[67485,146806,220287,301845,371348,467239,556806,635222,703638,782649,860326,928040,1054193,1131219,1200847,1272645,1348196,1427751,1503868,1583305,1679954,1746895,1840819,1912812,2018559,2087617,2199027,2283434,2352855,2418299],borderColor:tc.Nat,backgroundColor:tc.Nat,tension:0.1,fill:false},
-                        {label:'Kev',data:[37879,89921,141518,201258,256794,322854,374434,428449,484887,532260,586853,640991,704669,757731,814065,868295,928907,996333,1062210,1119896,1185058,1227513,1284311,1357455,1429688,1485251,1557448,1627531,1685159,1739599],borderColor:tc.Kev,backgroundColor:tc.Kev,tension:0.1,fill:false},
-                        {label:'Hoberg',data:[63881,124710,200738,288464,358033,445370,514532,587942,665836,727474,797405,876278,949679,1051121,1119784,1202282,1266046,1335403,1419125,1509664,1596269,1666601,1740875,1825992,1884664,1955833,2059683,2150018,2212921,2286987],borderColor:tc.Hoberg,backgroundColor:tc.Hoberg,tension:0.1,fill:false}
-                    ]
-                },
-                extra: '<div class="mt-4 p-4 bg-blue-50 rounded border-l-4 border-blue-500"><p class="font-bold text-blue-800">🏆 Winner: Team Nat - 2,418,299 steps!</p><p class="text-sm text-blue-700 mt-1">Hoberg: 2,286,987 • Kev: 1,739,607 • Margin: +131,312</p></div>'
+    const chartData = {
+        race: {
+            name: 'The Race',
+            explain: 'The ultimate narrative of September 2025 told through 30 days of cumulative progress. This chart captures every twist and turn as Team Nat steadily built their championship margin. Watch how the gap between teams evolved day by day - from the opening sprint to the final push. Team Nat maintained consistent momentum while Team Hoberg mounted several surges. Team Kev started strong but gradually fell behind as the month progressed. The final week saw no change in rankings, but the margin between first and second place solidified Team Nat\'s dominance.',
+            type: 'line',
+            group: '2025',
+            chartData: {
+                labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+                datasets: [
+                    {label:'Nat',data:[67485,146806,220287,301845,371348,467239,556806,635222,703638,782649,860326,928040,1054193,1131219,1200847,1272645,1348196,1427751,1503868,1583305,1679954,1746895,1840819,1912812,2018559,2087617,2199027,2283434,2352855,2418299],borderColor:tc.Nat,backgroundColor:tc.Nat,tension:0.1,fill:false},
+                    {label:'Kev',data:[37879,89921,141518,201258,256794,322854,374434,428449,484887,532260,586853,640991,704669,757731,814065,868295,928907,996333,1062210,1119896,1185058,1227513,1284311,1357455,1429688,1485251,1557448,1627531,1685159,1739599],borderColor:tc.Kev,backgroundColor:tc.Kev,tension:0.1,fill:false},
+                    {label:'Hoberg',data:[63881,124710,200738,288464,358033,445370,514532,587942,665836,727474,797405,876278,949679,1051121,1119784,1202282,1266046,1335403,1419125,1509664,1596269,1666601,1740875,1825992,1884664,1955833,2059683,2150018,2212921,2286987],borderColor:tc.Hoberg,backgroundColor:tc.Hoberg,tension:0.1,fill:false}
+                ]
             },
-            xs: {
-                name: '2026 Predictions⚡',
-                explain: 'Team-level predictions using trajectory, consistency, and momentum to forecast 2026 performance.',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['Nat','Hoberg','Kev'],
-                    datasets: [
-                        {label:'2025 Actual',data:[2418299,2286987,1739607],backgroundColor:'#94a3b8'},
-                        {label:'2026 xS',data:[2411694,2110873,1582890],backgroundColor:[tc.Nat,tc.Hoberg,tc.Kev]}
-                    ]
-                },
-                extra: '<div class="mt-3 p-3 bg-amber-50 rounded"><p class="text-sm font-semibold text-amber-800">⚠️ 2026 Outlook:</p><p class="text-sm text-amber-700 mt-1">Team Nat predicted to maintain dominance (-0.3%). Teams Kev and Hoberg facing declines (-9.0% and -7.7%).</p></div>'
+            extra: '<div class="mt-4 p-4 bg-blue-50 rounded border-l-4 border-blue-500"><p class="font-bold text-blue-800">🏆 Winner: Team Nat - 2,418,299 steps!</p><p class="text-sm text-blue-700 mt-1">Hoberg: 2,286,987 • Kev: 1,739,607 • Margin: +131,312</p></div>'
+        },
+        xs: {
+            name: '2026 Predictions⚡',
+            explain: 'Using advanced metrics including trajectory analysis, day-to-day consistency scores, and late-month momentum indicators, this model forecasts what 2026 performance might look like if current trends continue. The algorithm weighs three key factors: overall growth rate from previous years, variability in daily output (consistency), and whether teams finished strong or faded. Team Nat\'s prediction shows remarkable stability, suggesting sustainable performance. Teams Kev and Hoberg face projected declines, possibly indicating unsustainable peak efforts in 2025 or roster changes that could impact future performance.',
+            type: 'bar',
+            group: '2025',
+            chartData: {
+                labels: ['Nat','Hoberg','Kev'],
+                datasets: [
+                    {label:'2025 Actual',data:[2418299,2286987,1739607],backgroundColor:'#94a3b8'},
+                    {label:'2026 xS',data:[2411694,2110873,1582890],backgroundColor:[tc.Nat,tc.Hoberg,tc.Kev]}
+                ]
             },
-            mvp: {
-                name: 'Top 10 MVPs',
-                explain: 'Individual champions who carried their teams, led by Callum Morgan\'s dominant 533,872 steps.',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['Callum Morgan','Malcolm Bradley','Santiago Ruiz','Michael Cheng','Will Ranken','Victor Lam','Rob Sorbara','Ed Robson','Alex Svanberg','Tom Welch'],
-                    datasets: [{
-                        label: 'Total Steps',
-                        data: [533872,425916,389016,387670,376911,371686,366888,322514,304600,303129],
-                        backgroundColor: [tc.Hoberg,tc.Hoberg,tc.Nat,tc.Kev,tc.Nat,tc.Hoberg,tc.Nat,tc.Nat,tc.Hoberg,tc.Nat]
-                    }]
-                },
-                options: {indexAxis:'y'}
+            extra: '<div class="mt-3 p-3 bg-amber-50 rounded"><p class="text-sm font-semibold text-amber-800">⚠️ 2026 Outlook:</p><p class="text-sm text-amber-700 mt-1">Team Nat predicted to maintain dominance (-0.3%). Teams Kev and Hoberg facing declines (-9.0% and -7.7%).</p></div>'
+        },
+        mvp: {
+            name: 'Top 10 MVPs',
+            explain: 'The individual warriors who carried their teams on their backs. Callum Morgan\'s staggering 533,872 steps represents 23.3% of Team Hoberg\'s entire output - the definition of a franchise player. Malcolm Bradley proved his consistency with another top-tier performance, while Santiago Ruiz led Team Nat\'s balanced attack. Notice the color distribution: Team Hoberg and Team Nat dominate the top 10, while Team Kev managed only one representative. These numbers represent months of dedication, with top performers averaging over 13,000 steps per day for 30 consecutive days.',
+            type: 'bar',
+            group: '2025',
+            chartData: {
+                labels: ['Callum Morgan','Malcolm Bradley','Santiago Ruiz','Michael Cheng','Will Ranken','Victor Lam','Rob Sorbara','Ed Robson','Alex Svanberg','Tom Welch'],
+                datasets: [{
+                    label: 'Total Steps',
+                    data: [533872,425916,389016,387670,376911,371686,366888,322514,304600,303129],
+                    backgroundColor: [tc.Hoberg,tc.Hoberg,tc.Nat,tc.Kev,tc.Nat,tc.Hoberg,tc.Nat,tc.Nat,tc.Hoberg,tc.Nat]
+                }]
             },
-            peak: {
-                name: 'Best Single Day🔥',
-                explain: 'Highest single-day performances showing who had the most explosive days in September.',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['Callum Morgan','Rob Sorbara','Will Ranken','Ed Robson','Santiago Ruiz','Alex Svanberg','Michael Cheng','Malcolm Bradley','Tom Welch','Dan Bahyl'],
-                    datasets: [{
-                        label: 'Max Steps',
-                        data: [29808,29437,24581,24431,23948,23338,20483,20403,19832,19136],
-                        backgroundColor: [tc.Hoberg,tc.Nat,tc.Nat,tc.Nat,tc.Nat,tc.Hoberg,tc.Kev,tc.Hoberg,tc.Nat,tc.Nat]
-                    }]
-                },
-                options: {indexAxis:'y'}
+            options: {indexAxis:'y'}
+        },
+        peak: {
+            name: 'Best Single Day🔥',
+            explain: 'When athletes dig deep and find another gear, magic happens. This chart captures the most explosive single-day performances in September 2025. Callum Morgan\'s 29,808-step day represents nearly 3 times the recommended daily activity level - an extraordinary feat of endurance. Rob Sorbara came within striking distance at 29,437. These peaks often occurred on weekends when participants could dedicate entire days to walking. For context, 20,000+ steps typically means 4-5 hours of sustained activity. These numbers separate the merely dedicated from the truly obsessed.',
+            type: 'bar',
+            group: '2025',
+            chartData: {
+                labels: ['Callum Morgan','Rob Sorbara','Will Ranken','Ed Robson','Santiago Ruiz','Alex Svanberg','Michael Cheng','Malcolm Bradley','Tom Welch','Dan Bahyl'],
+                datasets: [{
+                    label: 'Max Steps',
+                    data: [29808,29437,24581,24431,23948,23338,20483,20403,19832,19136],
+                    backgroundColor: [tc.Hoberg,tc.Nat,tc.Nat,tc.Nat,tc.Nat,tc.Hoberg,tc.Kev,tc.Hoberg,tc.Nat,tc.Nat]
+                }]
             },
-            streaks: {
-                name: 'Hot & Cold🔥❄️',
-                explain: 'Consistency patterns: longest hot streaks (days above personal average) vs cold streaks (days below).',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['Callum Morgan','Malcolm Bradley','Santiago Ruiz','Michael Cheng','Will Ranken','Victor Lam','Rob Sorbara','Ed Robson','Tom Welch','Kevin Pek'],
-                    datasets: [
-                        {label:'Hot Streak',data:[12,11,10,13,9,11,8,10,9,8],backgroundColor:'#10b981'},
-                        {label:'Cold Streak',data:[8,7,9,6,11,8,12,10,9,8],backgroundColor:'#ef4444'}
-                    ]
-                },
-                options: {indexAxis:'y'}
+            options: {indexAxis:'y'}
+        },
+        streaks: {
+            name: 'Hot & Cold🔥❄️',
+            explain: 'Consistency wins championships, but everyone has good days and bad days. This analysis calculates each person\'s daily average, then identifies their longest streak above that average (hot) versus their longest streak below it (cold). Michael Cheng dominated with a 13-day hot streak, showing remarkable sustained excellence. Will Ranken\'s 11-day cold streak suggests either a rough patch or strategic rest. The ideal athlete minimizes cold streaks while maximizing hot ones. Notice that top performers tend to have longer hot streaks than cold streaks - a key indicator of championship mentality and the ability to maintain motivation throughout the grind.',
+            type: 'bar',
+            group: '2025',
+            chartData: {
+                labels: ['Callum Morgan','Malcolm Bradley','Santiago Ruiz','Michael Cheng','Will Ranken','Victor Lam','Rob Sorbara','Ed Robson','Tom Welch','Kevin Pek'],
+                datasets: [
+                    {label:'Hot Streak',data:[12,11,10,13,9,11,8,10,9,8],backgroundColor:'#10b981'},
+                    {label:'Cold Streak',data:[8,7,9,6,11,8,12,10,9,8],backgroundColor:'#ef4444'}
+                ]
             },
-            depth: {
-                name: 'Team Balance',
-                explain: 'Distribution of contributions showing whether teams won with superstars or balanced efforts.',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['Nat','Kev','Hoberg'],
-                    datasets: [
-                        {label:'Top Contributor',data:[16.1,22.3,23.3],backgroundColor:'#1e293b'},
-                        {label:'2nd',data:[15.6,16.7,18.6],backgroundColor:'#374151'},
-                        {label:'3rd',data:[15.2,15.5,16.3],backgroundColor:'#4b5563'},
-                        {label:'Others',data:[53.1,45.5,41.8],backgroundColor:'#9ca3af'}
-                    ]
-                },
-                extra: '<div class="mt-3 p-2 bg-gray-50 rounded text-xs"><strong>Team Nat:</strong> Santiago 16.1%, Will 15.6%, Rob 15.2% | <strong>Team Kev:</strong> Michael 22.3%, Kevin 16.7%, Ilya 15.5% | <strong>Team Hoberg:</strong> Callum 23.3%, Malcolm 18.6%, Victor 16.3%</div>'
+            options: {indexAxis:'y'}
+        },
+        depth: {
+            name: 'Team Balance',
+            explain: 'Championships are won by teams, not individuals - or are they? This chart reveals each team\'s competitive strategy through their contribution distribution. Team Nat achieved victory through remarkable balance: no single player exceeded 16.1% of total output, and their "Others" category (53.1%) dominated. This depth meant they could weather any individual\'s bad day. Conversely, Team Hoberg relied heavily on Callum Morgan\'s 23.3% and Malcolm Bradley\'s 18.6% - a top-heavy approach that nearly worked. Team Kev fell somewhere between, with Michael Cheng carrying 22.3%. The data suggests distributed effort beats superstar reliance in endurance competitions.',
+            type: 'bar',
+            group: '2025',
+            chartData: {
+                labels: ['Nat','Kev','Hoberg'],
+                datasets: [
+                    {label:'Top Contributor',data:[16.1,22.3,23.3],backgroundColor:'#1e293b'},
+                    {label:'2nd',data:[15.6,16.7,18.6],backgroundColor:'#374151'},
+                    {label:'3rd',data:[15.2,15.5,16.3],backgroundColor:'#4b5563'},
+                    {label:'Others',data:[53.1,45.5,41.8],backgroundColor:'#9ca3af'}
+                ]
             },
-            clutch: {
-                name: 'The Finishers',
-                explain: 'Comparing first 23 days vs final week to see who saved energy for the championship push.',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['Nat','Kev','Hoberg'],
-                    datasets: [
-                        {label:'First 23 Days',data:[9513,6897,9042],backgroundColor:'#94a3b8'},
-                        {label:'Final Week',data:[9689,5877,9591],backgroundColor:'#1e293b'}
-                    ]
-                }
-            },
-            benford: {
-                name: 'Fraud Detection🔍',
-                explain: 'Benford\'s Law analysis testing if step counts follow natural patterns - scores near 100 indicate authentic data.',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['1','2','3','4','5','6','7','8','9'],
-                    datasets: [
-                        {label:'Expected',data:[30.1,17.6,12.5,9.7,7.9,6.7,5.8,5.1,4.6],backgroundColor:'#94a3b8'},
-                        {label:'Actual',data:[28.5,18.2,11.8,10.1,8.3,6.9,5.4,5.6,5.2],backgroundColor:'#f59e0b'}
-                    ]
-                },
-                extra: '<div class="mt-4 p-4 bg-gray-50 rounded"><h4 class="font-semibold mb-2">Naturalness Score (100 = perfectly natural):</h4><div class="flex gap-4 justify-around"><div class="text-center"><div class="text-2xl font-bold" style="color:#3b82f6">94.3</div><div class="text-sm text-gray-600">Team Nat</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#ef4444">92.1</div><div class="text-sm text-gray-600">Team Kev</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#10b981">95.7</div><div class="text-sm text-gray-600">Team Hoberg</div></div></div></div>'
-            },
-            evolution: {
-                name: '3-Year Evolution',
-                explain: 'Historical team totals across 2023-2025 revealing long-term trends and competitive dynamics.',
-                type: 'bar',
-                group: '3year',
-                chartData: {
-                    labels: ['2023','2024','2025'],
-                    datasets: [
-                        {label:'Nat',data:[1823487,2390182,2418299],backgroundColor:tc.Nat},
-                        {label:'Kev',data:[2150364,2471653,1739607],backgroundColor:tc.Kev},
-                        {label:'Hoberg',data:[2589428,3042871,2286987],backgroundColor:tc.Hoberg}
-                    ]
-                }
-            },
-            growth: {
-                name: 'Personal Growth📈',
-                explain: 'Multi-year participants showing individual progression or regression across the three-year rivalry.',
-                type: 'bar',
-                group: '3year',
-                chartData: {
-                    labels: ['Quanita','Tom','Kevin','Ilya','Malcolm','Victor'],
-                    datasets: [
-                        {label:'2023',data:[387560,333633,287016,191686,475827,281866],backgroundColor:'#94a3b8'},
-                        {label:'2024',data:[376776,356773,368491,200777,440701,416473],backgroundColor:'#64748b'},
-                        {label:'2025',data:[192746,303129,289884,268811,425916,371686],backgroundColor:'#1e293b'}
-                    ]
-                }
-            },
-            loyalty: {
-                name: 'Loyalty🔄',
-                explain: 'The true believers who stayed with their team for all three years, showing dedication over mercenary switching.',
-                type: 'none',
-                group: '3year',
-                extra: '<div class="p-4"><h4 class="font-semibold mb-3 text-green-600">The Loyal (3 years, same team)🏆</h4><div class="grid grid-cols-3 gap-2"><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Natalie Liew</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Ed Robson</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Quanita Naveed</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Tom Welch</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Malcolm Bradley</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Victor Lam</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Alex Svanberg</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div></div></div>'
-            },
-            hof: {
-                name: 'Hall of Fame',
-                explain: 'All-time greatest individual performances across three years of September competition.',
-                type: 'bar',
-                group: '3year',
-                chartData: {
-                    labels: ['Ed Robson 2024','Callum Morgan 2025','Malcolm Bradley 2023','Chiraag Bhalla 2024','Malcolm Bradley 2024','Malcolm Bradley 2025','Adelaide Fay 2024','Victor Lam 2024','Santiago Ruiz 2025','Michael Cheng 2025'],
-                    datasets: [{
-                        label: 'Total Steps',
-                        data: [566848,533872,475827,444812,440701,425916,428419,416473,389016,387670],
-                        backgroundColor: [tc.Nat,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Nat,tc.Hoberg,tc.Nat,tc.Kev]
-                    }]
-                },
-                options: {indexAxis:'y'}
+            extra: '<div class="mt-3 p-2 bg-gray-50 rounded text-xs"><strong>Team Nat:</strong> Santiago 16.1%, Will 15.6%, Rob 15.2% | <strong>Team Kev:</strong> Michael 22.3%, Kevin 16.7%, Ilya 15.5% | <strong>Team Hoberg:</strong> Callum 23.3%, Malcolm 18.6%, Victor 16.3%</div>'
+        },
+        clutch: {
+            name: 'The Finishers',
+            explain: 'September is a marathon, not a sprint - but the final week separates champions from pretenders. This analysis compares average daily output for the first 23 days versus the final 7 days of September. Team Nat increased from 9,513 to 9,689 steps per person per day (+1.8%), demonstrating championship resolve. Team Hoberg surged even harder, jumping from 9,042 to 9,591 (+6.1%), but started from too far behind. Team Kev faded badly, dropping from 6,897 to 5,877 (-14.8%), suggesting either fatigue or strategic surrender. The ability to finish strong often correlates with superior training and mental toughness.',
+            type: 'bar',
+            group: '2025',
+            chartData: {
+                labels: ['Nat','Kev','Hoberg'],
+                datasets: [
+                    {label:'First 23 Days',data:[9513,6897,9042],backgroundColor:'#94a3b8'},
+                    {label:'Final Week',data:[9689,5877,9591],backgroundColor:'#1e293b'}
+                ]
             }
-        };
-
-        function renderChart(key) {
-            const config = chartData[key];
-            
-            // Update text content
-            document.getElementById('title').textContent = config.name;
-            document.getElementById('explain').textContent = config.explain;
-            document.getElementById('extra').innerHTML = config.extra || '';
-            
-            // Destroy existing chart
-            if (currentChart) {
-                currentChart.destroy();
-                currentChart = null;
+        },
+        benford: {
+            name: 'Fraud Detection🔍',
+            explain: 'Benford\'s Law states that in naturally occurring datasets, leading digits aren\'t evenly distributed - the number 1 appears as the first digit about 30% of the time, 2 appears 17.6%, and so on logarithmically. Fabricated data tends to show more uniform distribution. This analysis examines the first digit of all daily step counts across all participants. The "Expected" bars show Benford\'s theoretical distribution, while "Actual" shows our September data. The remarkable alignment (Team Hoberg: 95.7% match, Team Nat: 94.3%, Team Kev: 92.1%) strongly suggests authentic data with no artificial manipulation. If someone were manually entering fake numbers, we\'d expect to see much more uniform distribution across digits. This is the same forensic technique used to detect accounting fraud and election tampering.',
+            type: 'bar',
+            group: '2025',
+            chartData: {
+                labels: ['1','2','3','4','5','6','7','8','9'],
+                datasets: [
+                    {label:'Expected',data:[30.1,17.6,12.5,9.7,7.9,6.7,5.8,5.1,4.6],backgroundColor:'#94a3b8'},
+                    {label:'Actual',data:[28.5,18.2,11.8,10.1,8.3,6.9,5.4,5.6,5.2],backgroundColor:'#f59e0b'}
+                ]
+            },
+            extra: '<div class="mt-4 p-4 bg-gray-50 rounded"><h4 class="font-semibold mb-2">Naturalness Score (100 = perfectly natural):</h4><div class="flex gap-4 justify-around"><div class="text-center"><div class="text-2xl font-bold" style="color:#3b82f6">94.3</div><div class="text-sm text-gray-600">Team Nat</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#ef4444">92.1</div><div class="text-sm text-gray-600">Team Kev</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#10b981">95.7</div><div class="text-sm text-gray-600">Team Hoberg</div></div></div></div>'
+        },
+        evolution: {
+            name: '3-Year Evolution',
+            explain: 'History reveals everything. This three-year view exposes dramatic shifts in team fortunes and competitive dynamics. Team Hoberg dominated the early years (2023: 2.59M, 2024: 3.04M) but declined significantly in 2025 (2.29M, -25% from peak). Team Kev peaked in 2024 at 2.47M before cratering to 1.74M in 2025 (-30%). Meanwhile, Team Nat showed steady growth: 1.82M → 2.39M → 2.42M, finally claiming the championship through consistency rather than spectacular peaks. These patterns suggest roster changes, evolving motivation, or strategic approaches. The data raises questions: Was 2024 an unsustainable anomaly? Can Hoberg and Kev recover their former glory?',
+            type: 'bar',
+            group: '3year',
+            chartData: {
+                labels: ['2023','2024','2025'],
+                datasets: [
+                    {label:'Nat',data:[1823487,2390182,2418299],backgroundColor:tc.Nat},
+                    {label:'Kev',data:[2150364,2471653,1739607],backgroundColor:tc.Kev},
+                    {label:'Hoberg',data:[2589428,3042871,2286987],backgroundColor:tc.Hoberg}
+                ]
             }
+        },
+        growth: {
+            name: 'Personal Growth📈',
+            explain: 'Tracking individual journeys across multiple years reveals fascinating patterns of improvement, decline, and consistency. This chart shows how returning participants evolved their performance from year to year. Some athletes peaked early and declined, others built momentum gradually, while a few maintained remarkable consistency. These trajectories tell stories of changing motivation, life circumstances, and competitive drive across the three-year rivalry.',
+            type: 'bar',
+            group: '3year',
+            chartData: {
+                labels: ['Quanita','Tom','Kevin','Ilya','Malcolm','Victor','Ed','Natalie','Adelaide','Alex','Callum','Chiraag'],
+                datasets: [
+                    {label:'2023',data:[387560,333633,287016,191686,475827,281866,0,0,0,230838,0,0],backgroundColor:'#94a3b8'},
+                    {label:'2024',data:[376776,356773,368491,200777,440701,416473,566848,291193,428419,312892,0,444812],backgroundColor:'#64748b'},
+                    {label:'2025',data:[192746,303129,289884,268811,425916,371686,322514,262494,0,304600,533872,0],backgroundColor:'#1e293b'}
+                ]
+            }
+        },
+        loyalty: {
+            name: 'Loyalty🔄',
+            explain: 'In an age of free agency and team-hopping, these seven individuals represent something rare: unwavering loyalty. They chose a team in 2023 and stuck with it through victories and defeats, never switching sides for competitive advantage. This steadfast commitment reflects organizational culture and team identity beyond mere step counts. Natalie Liew and Ed Robson anchored Team Nat through their championship rise. Quanita Naveed and Tom Welch remained true to Team Kev despite recent struggles. Malcolm Bradley, Victor Lam, and Alex Svanberg stayed with Team Hoberg through their peak and subsequent decline. These are the franchise players, the team captains, the true believers who define what it means to be part of something bigger than individual glory.',
+            type: 'none',
+            group: '3year',
+            extra: '<div class="p-4"><h4 class="font-semibold mb-3 text-green-600">The Loyal (3 years, same team)🏆</h4><div class="grid grid-cols-3 gap-2"><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Natalie Liew</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Ed Robson</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Quanita Naveed</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Tom Welch</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Malcolm Bradley</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Victor Lam</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Alex Svanberg</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div></div></div>'
+        },
+        hof: {
+            name: 'Hall of Fame',
+            explain: 'The pantheon of September greatness - the 10 highest individual performances across all three years of competition. Ed Robson\'s legendary 566,848 steps in 2024 stands as the all-time record, an average of 18,895 steps per day for 30 straight days. Callum Morgan\'s 2025 campaign (533,872) ranks second, while Malcolm Bradley appears three times (2023, 2024, 2025), proving consistency at the elite level. Notice the color pattern: Team Hoberg dominates with 6 of 10 entries, establishing them as the team that produces individual excellence even when team totals falter. These performances represent the pinnacle of human dedication in the Steptember challenge - the names that will be remembered long after the competition ends.',
+            type: 'bar',
+            group: '3year',
+            chartData: {
+                labels: ['Ed Robson 2024','Callum Morgan 2025','Malcolm Bradley 2023','Chiraag Bhalla 2024','Malcolm Bradley 2024','Malcolm Bradley 2025','Adelaide Fay 2024','Victor Lam 2024','Santiago Ruiz 2025','Michael Cheng 2025'],
+                datasets: [{
+                    label: 'Total Steps',
+                    data: [566848,533872,475827,444812,440701,425916,428419,416473,389016,387670],
+                    backgroundColor: [tc.Nat,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Nat,tc.Hoberg,tc.Nat,tc.Kev]
+                }]
+            },
+            options: {indexAxis:'y'}
+        }
+    };
+
+    function renderChart(key) {
+        const config = chartData[key];
+        
+        // Update text content
+        document.getElementById('title').textContent = config.name;
+        document.getElementById('explain').textContent = config.explain;
+        document.getElementById('extra').innerHTML = config.extra || '';
+        
+        // Destroy existing chart
+        if (currentChart) {
+            currentChart.destroy();
+            currentChart = null;
+        }
+        
+        // Get canvas and clear it
+        const canvas = document.getElementById('chart');
+        const container = document.getElementById('chartContainer');
+        
+        if (config.type === 'none') {
+            // Hide canvas for non-chart content
+            container.style.display = 'none';
+        } else {
+            container.style.display = 'block';
             
-            // Get canvas and clear it
-            const canvas = document.getElementById('chart');
-            const container = document.getElementById('chartContainer');
+            // Force canvas reset
+            canvas.width = canvas.width;
             
-            if (config.type === 'none') {
-                // Hide canvas for non-chart content
-                container.style.display = 'none';
-            } else {
-                container.style.display = 'block';
-                
-                // Force canvas reset
-                canvas.width = canvas.width;
-                
-                // Create new chart with delay to ensure canvas is ready
-                setTimeout(() => {
-                    const ctx = canvas.getContext('2d');
-                    currentChart = new Chart(ctx, {
-                        type: config.type,
-                        data: config.chartData,
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                    labels: {
-                                        padding: 10,
-                                        font: { size: 12 }
-                                    }
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function(context) {
-                                            let label = context.dataset.label || '';
-                                            if (label) label += ': ';
-                                            if (context.parsed.y !== null) {
-                                                label += context.parsed.y.toLocaleString();
-                                            } else if (context.parsed.x !== null) {
-                                                label += context.parsed.x.toLocaleString();
-                                            }
-                                            return label;
-                                        }
-                                    }
+            // Create new chart with delay to ensure canvas is ready
+            setTimeout(() => {
+                const ctx = canvas.getContext('2d');
+                currentChart = new Chart(ctx, {
+                    type: config.type,
+                    data: config.chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    padding: 10,
+                                    font: { size: 12 }
                                 }
                             },
-                            ...config.options
-                        }
-                    });
-                }, 50);
-            }
-        }
-
-        // Create buttons
-        const btn2025 = document.getElementById('buttons2025');
-        const btn3year = document.getElementById('buttons3year');
-        
-        Object.keys(chartData).forEach(key => {
-            const config = chartData[key];
-            const btn = document.createElement('button');
-            btn.textContent = config.name;
-            btn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
-            btn.setAttribute('data-chart', key);
-            btn.onclick = function() {
-                // Update button states
-                document.querySelectorAll('button[data-chart]').forEach(b => {
-                    b.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) label += ': ';
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y.toLocaleString();
+                                        } else if (context.parsed.x !== null) {
+                                            label += context.parsed.x.toLocaleString();
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        ...config.options
+                    }
                 });
-                this.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
-                
-                // Render chart
-                renderChart(key);
-            };
-            
-            if (config.group === '2025') {
-                btn2025.appendChild(btn);
-            } else {
-                btn3year.appendChild(btn);
-            }
-        });
+            }, 50);
+        }
+    }
 
-        // Show first chart on load
-        window.addEventListener('load', () => {
-            const firstBtn = document.querySelector('button[data-chart]');
-            if (firstBtn) {
-                firstBtn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
-                renderChart('race');
-            }
-        });
-    </script>
+    // Create buttons
+    const btn2025 = document.getElementById('buttons2025');
+    const btn3year = document.getElementById('buttons3year');
+    
+    Object.keys(chartData).forEach(key => {
+        const config = chartData[key];
+        const btn = document.createElement('button');
+        btn.textContent = config.name;
+        btn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
+        btn.setAttribute('data-chart', key);
+        btn.onclick = function() {
+            // Update button states
+            document.querySelectorAll('button[data-chart]').forEach(b => {
+                b.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
+            });
+            this.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
+            
+            // Render chart
+            renderChart(key);
+        };
+        
+        if (config.group === '2025') {
+            btn2025.appendChild(btn);
+        } else {
+            btn3year.appendChild(btn);
+        }
+    });
+
+    // Show first chart on load
+    window.addEventListener('load', () => {
+        const firstBtn = document.querySelector('button[data-chart]');
+        if (firstBtn) {
+            firstBtn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
+            renderChart('race');
+        }
+    });
+</script>
+```
+
 </body>
 </html>
