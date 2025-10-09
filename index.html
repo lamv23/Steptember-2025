@@ -23,11 +23,14 @@
 <body class="bg-gray-50">
     <div class="max-w-7xl mx-auto p-6">
         <h1 class="text-3xl font-bold mb-2">BCCoE Steptember 2025 Insights</h1>
-        <p class="text-gray-600 mb-6">September Challenge - All 12 Charts</p>
+        <p class="text-gray-600 mb-6">September Challenge - All 13 Charts</p>
         
         <div class="mb-6">
             <h3 class="text-sm font-semibold text-gray-700 mb-2">📊 2025 Only (8 charts)</h3>
             <div class="flex gap-2 mb-4 flex-wrap" id="buttons2025"></div>
+            
+            <h3 class="text-sm font-semibold text-gray-700 mb-2">📅 Daily Analysis (1 chart)</h3>
+            <div class="flex gap-2 mb-4 flex-wrap" id="buttonsDaily"></div>
             
             <h3 class="text-sm font-semibold text-gray-700 mb-2">📈 3-Year Analysis (4 charts)</h3>
             <div class="flex gap-2 flex-wrap" id="buttons3year"></div>
@@ -36,6 +39,13 @@
         <div class="bg-white rounded-lg shadow-lg p-6">
             <h2 class="text-2xl font-bold mb-2" id="title">The Race</h2>
             <p class="text-sm text-gray-600 italic mb-4" id="explain"></p>
+            <div id="yearSelector" class="hidden mb-4">
+                <div class="flex gap-2">
+                    <button onclick="updateWeekendYear(2023)" id="year2023" class="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300">2023</button>
+                    <button onclick="updateWeekendYear(2024)" id="year2024" class="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300">2024</button>
+                    <button onclick="updateWeekendYear(2025)" id="year2025" class="px-4 py-2 rounded bg-blue-600 text-white">2025</button>
+                </div>
+            </div>
             <div id="chartContainer">
                 <canvas id="chart"></canvas>
             </div>
@@ -52,6 +62,104 @@
     <script>
         const tc = { Nat: '#3b82f6', Kev: '#ef4444', Hoberg: '#10b981' };
         let currentChart = null;
+        let currentWeekendYear = 2025;
+
+        // Weekend Warrior data - precalculated averages
+        const weekendData = {
+            2023: {
+                'Kev': [
+                    {name:'Kevin Pek',weekday:10141,weekend:10467,team:'Kev'},
+                    {name:'Quanita Naveed',weekday:13039,weekend:13572,team:'Kev'},
+                    {name:'Tom Welch',weekday:11738,weekend:12098,team:'Kev'},
+                    {name:'Ilya Zak',weekday:6552,weekend:7192,team:'Kev'},
+                    {name:'Antony Peronace',weekday:7801,weekend:8620,team:'Kev'},
+                    {name:'Lachlan Macleod',weekday:9119,weekend:9723,team:'Kev'},
+                    {name:'Fiona Mills',weekday:6000,weekend:6000,team:'Kev'},
+                    {name:'Darcy Bevan',weekday:8149,weekend:9167,team:'Kev'}
+                ],
+                'Hoberg': [
+                    {name:'Callum Morgan',weekday:11817,weekend:13002,team:'Hoberg'},
+                    {name:'Malcolm Bradley',weekday:15711,weekend:16804,team:'Hoberg'},
+                    {name:'Victor Lam',weekday:9238,weekend:10138,team:'Hoberg'},
+                    {name:'Alex Svanberg',weekday:12073,weekend:13260,team:'Hoberg'},
+                    {name:'Alvin Ho',weekday:8348,weekend:9014,team:'Hoberg'},
+                    {name:'John Dennis',weekday:17134,weekend:18892,team:'Hoberg'},
+                    {name:'Sharanya Chahar',weekday:5869,weekend:6213,team:'Hoberg'},
+                    {name:'Madalene Van Koeverden',weekday:7815,weekend:8405,team:'Hoberg'}
+                ],
+                'Nat': [
+                    {name:'Natalie Liew',weekday:7072,weekend:7812,team:'Nat'},
+                    {name:'Edward Robson',weekday:6583,weekend:7489,team:'Nat'},
+                    {name:'Ramsey Yu',weekday:10019,weekend:10872,team:'Nat'},
+                    {name:'Jeremy Dornan',weekday:10285,weekend:11203,team:'Nat'},
+                    {name:'Megan Michael',weekday:4534,weekend:4906,team:'Nat'},
+                    {name:'Kiran Shakeel',weekday:5861,weekend:6294,team:'Nat'},
+                    {name:'Michelle Hawkings',weekday:12287,weekend:13408,team:'Nat'},
+                    {name:'Andrew Cross',weekday:7114,weekend:8210,team:'Nat'}
+                ]
+            },
+            2024: {
+                'Kev': [
+                    {name:'Kevin Pek',weekday:12544,weekend:13054,team:'Kev'},
+                    {name:'Quanita Naveed',weekday:12625,weekend:12937,team:'Kev'},
+                    {name:'Tom Welch',weekday:12203,weekend:12730,team:'Kev'},
+                    {name:'Mel Hay',weekday:7988,weekend:8545,team:'Kev'},
+                    {name:'Darcy Bevan',weekday:7594,weekend:8658,team:'Kev'},
+                    {name:'Kiran Shakeel',weekday:6874,weekend:7293,team:'Kev'},
+                    {name:'Will Ranken',weekday:9534,weekend:10316,team:'Kev'},
+                    {name:'Andew Cross',weekday:7690,weekend:8510,team:'Kev'}
+                ],
+                'Hoberg': [
+                    {name:'Callum Morgan',weekday:12823,weekend:14089,team:'Hoberg'},
+                    {name:'Malcolm Bradley',weekday:14467,weekend:15340,team:'Hoberg'},
+                    {name:'Victor Lam',weekday:13644,weekend:14932,team:'Hoberg'},
+                    {name:'Alex Svanberg',weekday:10225,weekend:11288,team:'Hoberg'},
+                    {name:'Alvin Ho',weekday:5332,weekend:6023,team:'Hoberg'},
+                    {name:'Chiraag Bhalla',weekday:14589,weekend:15789,team:'Hoberg'},
+                    {name:'Rob Sorbara',weekday:11177,weekend:12151,team:'Hoberg'}
+                ],
+                'Nat': [
+                    {name:'Natalie Liew',weekday:9204,weekend:10143,team:'Nat'},
+                    {name:'Edward Robson',weekday:19207,weekend:20908,team:'Nat'},
+                    {name:'Adelaide Fay',weekday:14548,weekend:15911,team:'Nat'},
+                    {name:'Dan Bahyl',weekday:12441,weekend:13589,team:'Nat'},
+                    {name:'Antoni Markakis',weekday:5698,weekend:6259,team:'Nat'},
+                    {name:'Ilya Zak',weekday:6951,weekend:7621,team:'Nat'},
+                    {name:'Ramsey Yu',weekday:4500,weekend:4500,team:'Nat'},
+                    {name:'Lisa Chan',weekday:4186,weekend:3690,team:'Nat'}
+                ]
+            },
+            2025: {
+                'Kev': [
+                    {name:'Kevin Pek',weekday:9482,weekend:10392,team:'Kev'},
+                    {name:'Quanita Naveed',weekday:6272,weekend:7118,team:'Kev'},
+                    {name:'Ilya Zak',weekday:8785,weekend:9607,team:'Kev'},
+                    {name:'Michael Cheng',weekday:12680,weekend:13892,team:'Kev'},
+                    {name:'Ant Peronace',weekday:7471,weekend:8218,team:'Kev'},
+                    {name:'Kiran Shakeel',weekday:8431,weekend:9204,team:'Kev'},
+                    {name:'Erin Turner',weekday:3719,weekend:4173,team:'Kev'}
+                ],
+                'Hoberg': [
+                    {name:'Callum Morgan',weekday:16490,weekend:21387,team:'Hoberg'},
+                    {name:'Malcolm Bradley',weekday:13356,weekend:16510,team:'Hoberg'},
+                    {name:'Victor Lam',weekday:11284,weekend:15429,team:'Hoberg'},
+                    {name:'Alex Svanberg',weekday:9938,weekend:11298,team:'Hoberg'},
+                    {name:'Alvin Ho',weekday:6825,weekend:7478,team:'Hoberg'},
+                    {name:'Chiraag Bhalla',weekday:8509,weekend:9296,team:'Hoberg'},
+                    {name:'Leo Ortiz',weekday:5978,weekend:6498,team:'Hoberg'}
+                ],
+                'Nat': [
+                    {name:'Natalie Liew',weekday:8690,weekend:9538,team:'Nat'},
+                    {name:'Edward Robson',weekday:10544,weekend:11546,team:'Nat'},
+                    {name:'Santiago Ruiz',weekday:12712,weekend:13927,team:'Nat'},
+                    {name:'Will Ranken',weekday:12311,weekend:13476,team:'Nat'},
+                    {name:'Rob Sorbara',weekday:11987,weekend:13106,team:'Nat'},
+                    {name:'Dan Bahyl',weekday:7580,weekend:8293,team:'Nat'},
+                    {name:'Adelaide Fay',weekday:5281,weekend:5792,team:'Nat'},
+                    {name:'Tom Welch',weekday:9913,weekend:10845,team:'Nat'}
+                ]
+            }
+        };
 
         const chartData = {
             race: {
@@ -153,177 +261,3 @@
                     datasets: [
                         {label:'First 23 Days',data:[9513,6897,9042],backgroundColor:'#94a3b8'},
                         {label:'Final Week',data:[9689,5877,9591],backgroundColor:'#1e293b'}
-                    ]
-                }
-            },
-            benford: {
-                name: 'Fraud Detection🔍',
-                explain: 'Benford\'s Law states that in naturally occurring datasets, leading digits aren\'t evenly distributed - the number 1 appears as the first digit about 30% of the time, 2 appears 17.6%, and so on logarithmically. Fabricated data tends to show more uniform distribution. This analysis examines the first digit of all daily step counts across all participants. The "Expected" bars show Benford\'s theoretical distribution, while "Actual" shows our September data. The remarkable alignment (Team Hoberg: 95.7% match, Team Nat: 94.3%, Team Kev: 92.1%) strongly suggests authentic data with no artificial manipulation. If someone were manually entering fake numbers, we\'d expect to see much more uniform distribution across digits. This is the same forensic technique used to detect accounting fraud and election tampering.',
-                type: 'bar',
-                group: '2025',
-                chartData: {
-                    labels: ['1','2','3','4','5','6','7','8','9'],
-                    datasets: [
-                        {label:'Expected',data:[30.1,17.6,12.5,9.7,7.9,6.7,5.8,5.1,4.6],backgroundColor:'#94a3b8'},
-                        {label:'Actual',data:[28.5,18.2,11.8,10.1,8.3,6.9,5.4,5.6,5.2],backgroundColor:'#f59e0b'}
-                    ]
-                },
-                extra: '<div class="mt-4 p-4 bg-gray-50 rounded"><h4 class="font-semibold mb-2">Naturalness Score (100 = perfectly natural):</h4><div class="flex gap-4 justify-around"><div class="text-center"><div class="text-2xl font-bold" style="color:#3b82f6">94.3</div><div class="text-sm text-gray-600">Team Nat</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#ef4444">92.1</div><div class="text-sm text-gray-600">Team Kev</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#10b981">95.7</div><div class="text-sm text-gray-600">Team Hoberg</div></div></div></div>'
-            },
-            evolution: {
-                name: '3-Year Evolution',
-                explain: 'History reveals everything. This three-year view exposes dramatic shifts in team fortunes and competitive dynamics. Team Hoberg dominated the early years (2023: 2.59M, 2024: 3.04M) but declined significantly in 2025 (2.29M, -25% from peak). Team Kev peaked in 2024 at 2.47M before cratering to 1.74M in 2025 (-30%). Meanwhile, Team Nat showed steady growth: 1.82M → 2.39M → 2.42M, finally claiming the championship through consistency rather than spectacular peaks. These patterns suggest roster changes, evolving motivation, or strategic approaches. The data raises questions: Was 2024 an unsustainable anomaly? Can Hoberg and Kev recover their former glory?',
-                type: 'bar',
-                group: '3year',
-                chartData: {
-                    labels: ['2023','2024','2025'],
-                    datasets: [
-                        {label:'Nat',data:[1823487,2390182,2418299],backgroundColor:tc.Nat},
-                        {label:'Kev',data:[2150364,2471653,1739607],backgroundColor:tc.Kev},
-                        {label:'Hoberg',data:[2589428,3042871,2286987],backgroundColor:tc.Hoberg}
-                    ]
-                }
-            },
-            growth: {
-                name: 'Personal Growth📈',
-                explain: 'Tracking individual journeys across multiple years reveals fascinating patterns of improvement, decline, and consistency. This chart shows how returning participants evolved their performance from year to year. Some athletes peaked early and declined, others built momentum gradually, while a few maintained remarkable consistency. These trajectories tell stories of changing motivation, life circumstances, and competitive drive across the three-year rivalry.',
-                type: 'bar',
-                group: '3year',
-                chartData: {
-                    labels: ['Quanita','Tom','Kevin','Ilya','Malcolm','Victor','Alex','Ed','Natalie','Callum','Alvin','Will','Kiran','Ant','Darcy','Adelaide','Dan','Chiraag','Rob'],
-                    datasets: [
-                        {label:'2023',data:[394724,354368,307425,199552,475827,281866,366820,201593,216678,361847,254527,0,0,239939,250096,0,0,0,0],backgroundColor:'#94a3b8'},
-                        {label:'2024',data:[382876,370334,380824,212619,440701,416473,312892,585771,281340,392292,164042,292148,209993,0,235046,444187,379888,444812,341838],backgroundColor:'#64748b'},
-                        {label:'2025',data:[192746,303129,289884,268811,425916,371686,304600,322514,266165,533872,208890,376911,257649,228926,0,161701,231975,260250,366888],backgroundColor:'#1e293b'}
-                    ]
-                }
-            },
-            loyalty: {
-                name: 'Loyalty🔄',
-                explain: 'In an age of free agency and team-hopping, these eight individuals represent something rare: unwavering loyalty. They chose a team in 2023 and stuck with it through victories and defeats, never switching sides for competitive advantage. This steadfast commitment reflects organizational culture and team identity beyond mere step counts. Natalie Liew and Ed Robson anchored Team Nat through their championship rise. Quanita Naveed and Kevin Pek remained true to Team Kev despite recent struggles. Callum Morgan, Malcolm Bradley, Victor Lam, and Alex Svanberg stayed with Team Hoberg through their peak and subsequent decline. These are the franchise players, the team captains, the true believers who define what it means to be part of something bigger than individual glory.',
-                type: 'none',
-                group: '3year',
-                extra: '<div class="p-4"><h4 class="font-semibold mb-3 text-green-600">The Loyal (3 years, same team)🏆</h4><div class="grid grid-cols-3 gap-2"><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Natalie Liew</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Ed Robson</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Quanita Naveed</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Kevin Pek</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Callum Morgan</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Malcolm Bradley</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Victor Lam</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Alex Svanberg</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div></div></div>'
-            },
-            hof: {
-                name: 'Hall of Fame',
-                explain: 'The pantheon of September greatness - the 10 highest individual performances across all three years of competition. Ed Robson\'s legendary 585,771 steps in 2024 stands as the all-time record, an average of 19,526 steps per day for 30 straight days. Callum Morgan\'s 2025 campaign (533,872) ranks second, and his 2024 performance (392,292) claims tenth place - making him one of only two people with multiple Hall of Fame entries alongside Malcolm Bradley who appears three times. Notice the color pattern: Team Hoberg dominates with 7 of 10 entries, establishing them as the team that produces individual excellence even when team totals falter. These performances represent the pinnacle of human dedication in the Steptember challenge - the names that will be remembered long after the competition ends.',
-                type: 'bar',
-                group: '3year',
-                chartData: {
-                    labels: ['Ed Robson 2024','Callum Morgan 2025','Malcolm Bradley 2023','Chiraag Bhalla 2024','Adelaide Fay 2024','Malcolm Bradley 2024','Malcolm Bradley 2025','Victor Lam 2024','Quanita Naveed 2023','Callum Morgan 2024'],
-                    datasets: [{
-                        label: 'Total Steps',
-                        data: [585771,533872,475827,444812,444187,440701,425916,416473,394724,392292],
-                        backgroundColor: [tc.Nat,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Nat,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Kev,tc.Hoberg]
-                    }]
-                },
-                options: {indexAxis:'y'}
-            }
-        };
-
-        function renderChart(key) {
-            const config = chartData[key];
-            
-            // Update text content
-            document.getElementById('title').textContent = config.name;
-            document.getElementById('explain').textContent = config.explain;
-            document.getElementById('extra').innerHTML = config.extra || '';
-            
-            // Destroy existing chart
-            if (currentChart) {
-                currentChart.destroy();
-                currentChart = null;
-            }
-            
-            // Get canvas and clear it
-            const canvas = document.getElementById('chart');
-            const container = document.getElementById('chartContainer');
-            
-            if (config.type === 'none') {
-                // Hide canvas for non-chart content
-                container.style.display = 'none';
-            } else {
-                container.style.display = 'block';
-                
-                // Force canvas reset
-                canvas.width = canvas.width;
-                
-                // Create new chart with delay to ensure canvas is ready
-                setTimeout(() => {
-                    const ctx = canvas.getContext('2d');
-                    currentChart = new Chart(ctx, {
-                        type: config.type,
-                        data: config.chartData,
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                    labels: {
-                                        padding: 10,
-                                        font: { size: 12 }
-                                    }
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function(context) {
-                                            let label = context.dataset.label || '';
-                                            if (label) label += ': ';
-                                            if (context.parsed.y !== null) {
-                                                label += context.parsed.y.toLocaleString();
-                                            } else if (context.parsed.x !== null) {
-                                                label += context.parsed.x.toLocaleString();
-                                            }
-                                            return label;
-                                        }
-                                    }
-                                }
-                            },
-                            ...config.options
-                        }
-                    });
-                }, 50);
-            }
-        }
-
-        // Create buttons
-        const btn2025 = document.getElementById('buttons2025');
-        const btn3year = document.getElementById('buttons3year');
-        
-        Object.keys(chartData).forEach(key => {
-            const config = chartData[key];
-            const btn = document.createElement('button');
-            btn.textContent = config.name;
-            btn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
-            btn.setAttribute('data-chart', key);
-            btn.onclick = function() {
-                // Update button states
-                document.querySelectorAll('button[data-chart]').forEach(b => {
-                    b.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
-                });
-                this.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
-                
-                // Render chart
-                renderChart(key);
-            };
-            
-            if (config.group === '2025') {
-                btn2025.appendChild(btn);
-            } else {
-                btn3year.appendChild(btn);
-            }
-        });
-
-        // Show first chart on load
-        window.addEventListener('load', () => {
-            const firstBtn = document.querySelector('button[data-chart]');
-            if (firstBtn) {
-                firstBtn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
-                renderChart('race');
-            }
-        });
-    </script>
-</body>
-</html>
