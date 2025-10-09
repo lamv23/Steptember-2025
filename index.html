@@ -64,7 +64,6 @@
         let currentChart = null;
         let currentWeekendYear = 2025;
 
-        // Weekend Warrior data - precalculated averages
         const weekendData = {
             2023: {
                 'Kev': [
@@ -414,7 +413,9 @@
             
             currentChart = new Chart(ctx, {
                 type: 'scatter',
-                data: weekendConfig.datasets,
+                data: {
+                    datasets: weekendConfig.datasets
+                },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
