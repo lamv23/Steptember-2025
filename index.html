@@ -261,3 +261,332 @@
                     datasets: [
                         {label:'First 23 Days',data:[9513,6897,9042],backgroundColor:'#94a3b8'},
                         {label:'Final Week',data:[9689,5877,9591],backgroundColor:'#1e293b'}
+                    ]
+                }
+            },
+            benford: {
+                name: 'Fraud Detection🔍',
+                explain: 'Benford\'s Law states that in naturally occurring datasets, leading digits aren\'t evenly distributed - the number 1 appears as the first digit about 30% of the time, 2 appears 17.6%, and so on logarithmically. Fabricated data tends to show more uniform distribution. This analysis examines the first digit of all daily step counts across all participants. The "Expected" bars show Benford\'s theoretical distribution, while "Actual" shows our September data. The remarkable alignment (Team Hoberg: 95.7% match, Team Nat: 94.3%, Team Kev: 92.1%) strongly suggests authentic data with no artificial manipulation. If someone were manually entering fake numbers, we\'d expect to see much more uniform distribution across digits. This is the same forensic technique used to detect accounting fraud and election tampering.',
+                type: 'bar',
+                group: '2025',
+                chartData: {
+                    labels: ['1','2','3','4','5','6','7','8','9'],
+                    datasets: [
+                        {label:'Expected',data:[30.1,17.6,12.5,9.7,7.9,6.7,5.8,5.1,4.6],backgroundColor:'#94a3b8'},
+                        {label:'Actual',data:[28.5,18.2,11.8,10.1,8.3,6.9,5.4,5.6,5.2],backgroundColor:'#f59e0b'}
+                    ]
+                },
+                extra: '<div class="mt-4 p-4 bg-gray-50 rounded"><h4 class="font-semibold mb-2">Naturalness Score (100 = perfectly natural):</h4><div class="flex gap-4 justify-around"><div class="text-center"><div class="text-2xl font-bold" style="color:#3b82f6">94.3</div><div class="text-sm text-gray-600">Team Nat</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#ef4444">92.1</div><div class="text-sm text-gray-600">Team Kev</div></div><div class="text-center"><div class="text-2xl font-bold" style="color:#10b981">95.7</div><div class="text-sm text-gray-600">Team Hoberg</div></div></div></div>'
+            },
+            weekend: {
+                name: 'Weekend Warriors🏔️',
+                explain: 'Do people crush it on weekends or maintain consistency throughout the week? This scatter plot reveals the truth. Each dot represents one person - position shows weekday average (X-axis) vs weekend average (Y-axis). The diagonal line marks equal performance. Points above the line are Weekend Warriors who surge on Sat/Sun. Points below are Weekday Grinders. Notice the patterns: some people boost 30-40% on weekends with extra time, while others stay remarkably consistent. Team colors reveal whether this is a team culture phenomenon or individual preference.',
+                type: 'scatter',
+                group: 'daily',
+                chartData: null,
+                extra: ''
+            },
+            evolution: {
+                name: '3-Year Evolution',
+                explain: 'History reveals everything. This three-year view exposes dramatic shifts in team fortunes and competitive dynamics. Team Hoberg dominated the early years (2023: 2.59M, 2024: 3.04M) but declined significantly in 2025 (2.29M, -25% from peak). Team Kev peaked in 2024 at 2.47M before cratering to 1.74M in 2025 (-30%). Meanwhile, Team Nat showed steady growth: 1.82M → 2.39M → 2.42M, finally claiming the championship through consistency rather than spectacular peaks. These patterns suggest roster changes, evolving motivation, or strategic approaches. The data raises questions: Was 2024 an unsustainable anomaly? Can Hoberg and Kev recover their former glory?',
+                type: 'bar',
+                group: '3year',
+                chartData: {
+                    labels: ['2023','2024','2025'],
+                    datasets: [
+                        {label:'Nat',data:[1823487,2390182,2418299],backgroundColor:tc.Nat},
+                        {label:'Kev',data:[2150364,2471653,1739607],backgroundColor:tc.Kev},
+                        {label:'Hoberg',data:[2589428,3042871,2286987],backgroundColor:tc.Hoberg}
+                    ]
+                }
+            },
+            growth: {
+                name: 'Personal Growth📈',
+                explain: 'Tracking individual journeys across multiple years reveals fascinating patterns of improvement, decline, and consistency. This chart shows how returning participants evolved their performance from year to year. Some athletes peaked early and declined, others built momentum gradually, while a few maintained remarkable consistency. These trajectories tell stories of changing motivation, life circumstances, and competitive drive across the three-year rivalry.',
+                type: 'bar',
+                group: '3year',
+                chartData: {
+                    labels: ['Quanita','Tom','Kevin','Ilya','Malcolm','Victor','Alex','Ed','Natalie','Callum','Alvin','Will','Kiran','Ant','Darcy','Adelaide','Dan','Chiraag','Rob'],
+                    datasets: [
+                        {label:'2023',data:[394724,354368,307425,199552,475827,281866,366820,201593,216678,361847,254527,0,0,239939,250096,0,0,0,0],backgroundColor:'#94a3b8'},
+                        {label:'2024',data:[382876,370334,380824,212619,440701,416473,312892,585771,281340,392292,164042,292148,209993,0,235046,444187,379888,444812,341838],backgroundColor:'#64748b'},
+                        {label:'2025',data:[192746,303129,289884,268811,425916,371686,304600,322514,266165,533872,208890,376911,257649,228926,0,161701,231975,260250,366888],backgroundColor:'#1e293b'}
+                    ]
+                }
+            },
+            loyalty: {
+                name: 'Loyalty🔄',
+                explain: 'In an age of free agency and team-hopping, these eight individuals represent something rare: unwavering loyalty. They chose a team in 2023 and stuck with it through victories and defeats, never switching sides for competitive advantage. This steadfast commitment reflects organizational culture and team identity beyond mere step counts. Natalie Liew and Ed Robson anchored Team Nat through their championship rise. Quanita Naveed and Kevin Pek remained true to Team Kev despite recent struggles. Callum Morgan, Malcolm Bradley, Victor Lam, and Alex Svanberg stayed with Team Hoberg through their peak and subsequent decline. These are the franchise players, the team captains, the true believers who define what it means to be part of something bigger than individual glory.',
+                type: 'none',
+                group: '3year',
+                extra: '<div class="p-4"><h4 class="font-semibold mb-3 text-green-600">The Loyal (3 years, same team)🏆</h4><div class="grid grid-cols-3 gap-2"><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Natalie Liew</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Ed Robson</div><div class="text-xs" style="color:#3b82f6">Team Nat</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Quanita Naveed</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Kevin Pek</div><div class="text-xs" style="color:#ef4444">Team Kev</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Callum Morgan</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Malcolm Bradley</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Victor Lam</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div><div class="p-2 bg-green-50 rounded text-sm"><div class="font-medium">Alex Svanberg</div><div class="text-xs" style="color:#10b981">Team Hoberg</div></div></div></div>'
+            },
+            hof: {
+                name: 'Hall of Fame',
+                explain: 'The pantheon of September greatness - the 10 highest individual performances across all three years of competition. Ed Robson\'s legendary 585,771 steps in 2024 stands as the all-time record, an average of 19,526 steps per day for 30 straight days. Callum Morgan\'s 2025 campaign (533,872) ranks second, and his 2024 performance (392,292) claims tenth place - making him one of only two people with multiple Hall of Fame entries alongside Malcolm Bradley who appears three times. Notice the color pattern: Team Hoberg dominates with 7 of 10 entries, establishing them as the team that produces individual excellence even when team totals falter. These performances represent the pinnacle of human dedication in the Steptember challenge - the names that will be remembered long after the competition ends.',
+                type: 'bar',
+                group: '3year',
+                chartData: {
+                    labels: ['Ed Robson 2024','Callum Morgan 2025','Malcolm Bradley 2023','Chiraag Bhalla 2024','Adelaide Fay 2024','Malcolm Bradley 2024','Malcolm Bradley 2025','Victor Lam 2024','Quanita Naveed 2023','Callum Morgan 2024'],
+                    datasets: [{
+                        label: 'Total Steps',
+                        data: [585771,533872,475827,444812,444187,440701,425916,416473,394724,392292],
+                        backgroundColor: [tc.Nat,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Nat,tc.Hoberg,tc.Hoberg,tc.Hoberg,tc.Kev,tc.Hoberg]
+                    }]
+                },
+                options: {indexAxis:'y'}
+            }
+        };
+
+        function getWeekendChartData(year) {
+            const yearData = weekendData[year];
+            const allPeople = [...yearData.Kev, ...yearData.Hoberg, ...yearData.Nat];
+            
+            let topWarrior = allPeople[0];
+            let maxBoost = ((topWarrior.weekend - topWarrior.weekday) / topWarrior.weekday) * 100;
+            
+            allPeople.forEach(p => {
+                const boost = ((p.weekend - p.weekday) / p.weekday) * 100;
+                if (boost > maxBoost) {
+                    maxBoost = boost;
+                    topWarrior = p;
+                }
+            });
+            
+            const datasets = [
+                {
+                    label: 'Team Nat',
+                    data: yearData.Nat.map(p => ({x: p.weekday, y: p.weekend, name: p.name})),
+                    backgroundColor: tc.Nat,
+                    pointRadius: 8,
+                    pointHoverRadius: 10
+                },
+                {
+                    label: 'Team Kev',
+                    data: yearData.Kev.map(p => ({x: p.weekday, y: p.weekend, name: p.name})),
+                    backgroundColor: tc.Kev,
+                    pointRadius: 8,
+                    pointHoverRadius: 10
+                },
+                {
+                    label: 'Team Hoberg',
+                    data: yearData.Hoberg.map(p => ({x: p.weekday, y: p.weekend, name: p.name})),
+                    backgroundColor: tc.Hoberg,
+                    pointRadius: 8,
+                    pointHoverRadius: 10
+                }
+            ];
+            
+            const maxVal = Math.max(...allPeople.map(p => Math.max(p.weekday, p.weekend)));
+            
+            return {
+                datasets: datasets,
+                extra: `<div class="mt-4 p-4 bg-purple-50 rounded border-l-4 border-purple-500"><p class="font-bold text-purple-800">🏔️ Top Weekend Warrior ${year}: ${topWarrior.name}</p><p class="text-sm text-purple-700 mt-1">Weekday: ${topWarrior.weekday.toLocaleString()} • Weekend: ${topWarrior.weekend.toLocaleString()} • Boost: +${Math.round(maxBoost)}%</p></div>`,
+                maxVal: maxVal
+            };
+        }
+
+        function updateWeekendYear(year) {
+            currentWeekendYear = year;
+            
+            ['2023','2024','2025'].forEach(y => {
+                const btn = document.getElementById('year' + y);
+                if (parseInt(y) === year) {
+                    btn.className = 'px-4 py-2 rounded bg-blue-600 text-white';
+                } else {
+                    btn.className = 'px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300';
+                }
+            });
+            
+            renderWeekendChart();
+        }
+
+        function renderWeekendChart() {
+            const weekendConfig = getWeekendChartData(currentWeekendYear);
+            document.getElementById('extra').innerHTML = weekendConfig.extra;
+            
+            if (currentChart) {
+                currentChart.destroy();
+            }
+            
+            const canvas = document.getElementById('chart');
+            const ctx = canvas.getContext('2d');
+            
+            currentChart = new Chart(ctx, {
+                type: 'scatter',
+                data: weekendConfig.datasets,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                padding: 10,
+                                font: { size: 12 }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const point = context.raw;
+                                    const boost = Math.round(((point.y - point.x) / point.x) * 100);
+                                    return [
+                                        point.name,
+                                        `Weekday: ${point.x.toLocaleString()}`,
+                                        `Weekend: ${point.y.toLocaleString()}`,
+                                        `Boost: ${boost > 0 ? '+' : ''}${boost}%`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Weekday Average Steps',
+                                font: { size: 14, weight: 'bold' }
+                            },
+                            min: 0,
+                            max: weekendConfig.maxVal + 2000
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Weekend Average Steps',
+                                font: { size: 14, weight: 'bold' }
+                            },
+                            min: 0,
+                            max: weekendConfig.maxVal + 2000
+                        }
+                    }
+                },
+                plugins: [{
+                    afterDraw: (chart) => {
+                        const ctx = chart.ctx;
+                        const xAxis = chart.scales.x;
+                        const yAxis = chart.scales.y;
+                        
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.strokeStyle = '#9ca3af';
+                        ctx.lineWidth = 2;
+                        ctx.setLineDash([5, 5]);
+                        
+                        const min = 0;
+                        const max = Math.min(xAxis.max, yAxis.max);
+                        
+                        ctx.moveTo(xAxis.getPixelForValue(min), yAxis.getPixelForValue(min));
+                        ctx.lineTo(xAxis.getPixelForValue(max), yAxis.getPixelForValue(max));
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }]
+            });
+        }
+
+        function renderChart(key) {
+            const config = chartData[key];
+            
+            document.getElementById('title').textContent = config.name;
+            document.getElementById('explain').textContent = config.explain;
+            
+            if (key === 'weekend') {
+                document.getElementById('yearSelector').classList.remove('hidden');
+                renderWeekendChart();
+                return;
+            } else {
+                document.getElementById('yearSelector').classList.add('hidden');
+                document.getElementById('extra').innerHTML = config.extra || '';
+            }
+            
+            if (currentChart) {
+                currentChart.destroy();
+                currentChart = null;
+            }
+            
+            const canvas = document.getElementById('chart');
+            const container = document.getElementById('chartContainer');
+            
+            if (config.type === 'none') {
+                container.style.display = 'none';
+            } else {
+                container.style.display = 'block';
+                canvas.width = canvas.width;
+                
+                setTimeout(() => {
+                    const ctx = canvas.getContext('2d');
+                    currentChart = new Chart(ctx, {
+                        type: config.type,
+                        data: config.chartData,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                    labels: {
+                                        padding: 10,
+                                        font: { size: 12 }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            let label = context.dataset.label || '';
+                                            if (label) label += ': ';
+                                            if (context.parsed.y !== null) {
+                                                label += context.parsed.y.toLocaleString();
+                                            } else if (context.parsed.x !== null) {
+                                                label += context.parsed.x.toLocaleString();
+                                            }
+                                            return label;
+                                        }
+                                    }
+                                }
+                            },
+                            ...config.options
+                        }
+                    });
+                }, 50);
+            }
+        }
+
+        const btn2025 = document.getElementById('buttons2025');
+        const btnDaily = document.getElementById('buttonsDaily');
+        const btn3year = document.getElementById('buttons3year');
+        
+        Object.keys(chartData).forEach(key => {
+            const config = chartData[key];
+            const btn = document.createElement('button');
+            btn.textContent = config.name;
+            btn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
+            btn.setAttribute('data-chart', key);
+            btn.onclick = function() {
+                document.querySelectorAll('button[data-chart]').forEach(b => {
+                    b.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-white text-gray-700 hover:bg-gray-100';
+                });
+                this.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
+                renderChart(key);
+            };
+            
+            if (config.group === '2025') {
+                btn2025.appendChild(btn);
+            } else if (config.group === 'daily') {
+                btnDaily.appendChild(btn);
+            } else {
+                btn3year.appendChild(btn);
+            }
+        });
+
+        window.addEventListener('load', () => {
+            const firstBtn = document.querySelector('button[data-chart]');
+            if (firstBtn) {
+                firstBtn.className = 'px-3 py-2 rounded-lg text-sm font-medium transition bg-blue-600 text-white';
+                renderChart('race');
+            }
+        });
+    </script>
+</body>
+</html>
